@@ -3,44 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title>IdeaBox</title>
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <nav class="nav">
-      <h1></h1>
+      <h1>IdeaBox</h1>
       <section class="nav-section">
-        <button class="nav-button-open" type="button" name="button"></button>
-        <button class="nav-button-close" type="button" name="button"></button>
-        <p></p>
-        <button class="nav-button-starbutton" type="button" name="button"></button>
+        <button class="nav-button-open hide" type="button" name="button"><img id="menu" src="assets/menu.svg"/></button>
+        <button class="nav-button-close hide" type="button" name="button"><img id="menu-close" src="assets/menu-close.svg"/></button>
+        <p>Filter Starred Ideas</p>
+        <button class="nav-button-starbutton" type="button" name="star-show">Show Starred Ideas</button>
       </section>
     </nav>
     <main class="main">
       <div class="main-div-form">
         <form class="main-form" action="index.html" method="post">
-          <label for=""></label>
-          <input class="form-input-title" type="text" name="" value="">
-          <label for=""></label>
-          <textarea class="form-textarea-body" name="name" rows="8" cols="80"></textarea>
-          <button class="form-button-save" type="button" name="button"></button>
+          <label for="idea-title">Title</label>
+          <input class="form-input-title" type="text" name="idea-title" value="">
+          <label for="idea-body">Body</label>
+          <textarea class="form-textarea-body" name="idea-body" rows="8" cols="80"></textarea>
+          <button class="form-button-save" type="button" name="save-button">Save</button>
           <div class="form-div">
-            <button class="form-button-search" type="button" name="button"></button>
-            <input class="form-input-search" type="text" name="" value="">
+            <button class="form-button-search" type="button" name="button"><img id="search" src="assets/search.svg"/></button>
+            <input class="form-input-search" type="text" name="search-input" value="Search ideas">
           </div>
         </form>
       </div>
       <section class="main-section-card">
         <article class="main-card">
           <header class="card-header">
-            <button class="card-button-star" type="button" name="button"></button>
-            <button class="card-button-delete" type="button" name="button"></button>
+            <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
+            <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
           </header>
           <body class="card-body">
             <h3 class="card-header-title"></h3>
             <p class="card-p-text"></p>
           </body>
           <footer class="card-footer">
-            <button class="card-button-edit" type="button" name="button"></button>
-            <label class="button-label-edit" for=""></label>
+            <button class="card-button-edit" type="button" name="comment-button"><img id="comment" src="assets/comment.svg"/></button>
+            <label class="button-label-edit" for="">Comment</label>
           </footer>
         </article>
       </section>
