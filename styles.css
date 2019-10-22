@@ -12,6 +12,11 @@ body {
   grid-template-rows: 2fr 3fr;
 }
 
+h1 {
+  color: white;
+  padding: 20px;
+}
+
 img {
   height: 25px;
   width: 25px;
@@ -24,6 +29,31 @@ img {
   height: 100%;
 }
 
+.nav-section {
+  border-top: #353567 2px solid;
+  border-bottom: #353567 2px solid;
+}
+
+.nav-button-open,
+.nav-button-close {
+  display: none;
+}
+
+.nav-paragraph {
+  color: #E9E9F3;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.nav-button-starbutton {
+  color: white;
+  background-color: #5356A4;
+  border: #353567 2px solid;
+  margin: 0 8% 25px;
+  font-size: 22px;
+  padding: 10px 18px;
+}
+
 /* FORM */
 .div-form {
   background-color: #A9AAD2;
@@ -31,12 +61,34 @@ img {
   display: flex;
   align-items: center;
   flex-direction: column;
+  border-left: white 2px solid;
+}
+
+.form-input-title {
+  width: 75%;
+  font-size: 25px;
+  padding: 5px;
+  margin: 0 auto 10px;
+}
+
+.idea-title-label,
+.idea-body-label {
+  width: 75%;
+}
+
+.form-textarea-body {
+  font-size: 25px;
+  width: 75%;
+  height: 60px;
+  padding: 5px;
+  margin: 0 auto 10px;
 }
 
 .form {
   display: flex;
   flex-flow: column;
   width: 60%;
+  margin: 20px 0;
 }
 
 
