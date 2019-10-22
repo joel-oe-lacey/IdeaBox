@@ -2,14 +2,14 @@
   box-sizing: content-box;
 }
 
-body {
+.body {
   display: grid;
   margin: 0px;
   grid-template-areas:
     "sidebar form"
     "sidebar cards";
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 55% 80%;
+  grid-template-rows: 550px 800px;
 }
 
 h1 {
@@ -151,7 +151,7 @@ img {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 
 .card {
