@@ -53,11 +53,18 @@ img {
   height: 30%;
   width: 45%;
   display: grid;
-
+  border: 1px solid #1F1F3D;
 }
 
 .card-header {
   background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-header button {
+  background-color: #1F1F3D;
+  border: none;
 }
 
 .card-body {
@@ -66,4 +73,6 @@ img {
 
 .card-footer {
   background-color: #A9AAD2;
+  display: flex;
+  justify-content: flex-start;
 }
