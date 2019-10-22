@@ -1,15 +1,15 @@
 * {
   box-sizing: content-box;
-  margin: 0px;
 }
 
 body {
   display: grid;
+  margin: 0px;
   grid-template-areas:
     "sidebar form"
     "sidebar cards";
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 2fr 3fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 75% 125%;
 }
 
 img {
@@ -21,7 +21,6 @@ img {
 .nav {
   background-color: #1F1F3D;
   grid-area: sidebar;
-  height: 100%;
 }
 
 /* FORM */
@@ -47,13 +46,16 @@ img {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  /* overflow: scroll; */
 }
 
 .card {
-  height: 30%;
-  width: 45%;
-  display: grid;
+  height: 40%;
+  width: 20%;
   border: 1px solid #1F1F3D;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-header {
@@ -69,6 +71,8 @@ img {
 
 .card-body {
   background-color: #FFFFFF;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .card-footer {
