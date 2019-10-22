@@ -9,7 +9,7 @@ body {
     "sidebar form"
     "sidebar cards";
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 75% 125%;
+  grid-template-rows: 55% 80%;
 }
 
 h1 {
@@ -63,6 +63,7 @@ img {
   grid-area: form;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   flex-direction: column;
   border-left: white 2px solid;
 }
@@ -71,7 +72,7 @@ img {
   width: 75%;
   font-size: 25px;
   padding: 5px 0;
-  margin: 0 auto 10px;
+  margin: 0 auto 20px;
   border: #5356A4 2px solid;
   border-radius: 3px;
   height: 2em;
@@ -89,14 +90,14 @@ img {
   width: 75%;
   height: 4em;
   padding: 5px 0;
-  margin: 0 auto 10px;
+  margin: 0 auto 15px;
   border: #5356A4 2px solid;
   border-radius: 3px;
 }
 
 .form-button-save {
   width: 75%;
-  margin: 10px auto;
+  margin: 15px auto;
   font-size: 20px;
   padding: 8px 0;
   color: #E9E9F3;
@@ -114,18 +115,19 @@ img {
   display: flex;
   align-items: center;
   border: #5356A4 2px solid;
+  background-color: white;
+  border-radius: 3px;
 }
 
 .form-input-search {
-  padding: 5px;
-  font-size: 15px;
-  height: 46px;
+  font-size: 16px;
   width: 100%;
   border: none;
+  margin: 5px;
 }
 
 .form-button-search {
-  height: 100%;
+  height: 97%;
   width: 3em;
   background-color: #1F1F3D;
   border: none;
