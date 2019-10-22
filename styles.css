@@ -34,6 +34,10 @@ img {
 .nav-section {
   border-top: #353567 2px solid;
   border-bottom: #353567 2px solid;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .nav-button-open,
@@ -43,7 +47,6 @@ img {
 
 .nav-paragraph {
   color: #E9E9F3;
-  padding: 20px;
   font-size: 20px;
 }
 
@@ -51,9 +54,8 @@ img {
   color: white;
   background-color: #5356A4;
   border: #353567 2px solid;
-  margin: 0 8% 25px;
-  font-size: 22px;
-  padding: 10px 18px;
+  padding: 10px 0;
+  font-size: 180%;
   border-radius: 3px;
 }
 
@@ -69,7 +71,7 @@ img {
 }
 
 .form-input-title {
-  width: 75%;
+  width: 400px;
   font-size: 25px;
   padding: 5px 0;
   margin: 0 auto 20px;
@@ -81,13 +83,13 @@ img {
 .idea-title-label,
 .idea-body-label {
   margin: 5px auto;
-  width: 75%;
+  width: 400px;
   color: #1F1F3D;
 }
 
 .form-textarea-body {
   font-size: 25px;
-  width: 75%;
+  width: 400px;
   height: 4em;
   padding: 5px 0;
   margin: 0 auto 15px;
@@ -96,7 +98,7 @@ img {
 }
 
 .form-button-save {
-  width: 75%;
+  width: 400px;
   margin: 15px auto;
   font-size: 20px;
   padding: 8px 0;
@@ -108,7 +110,7 @@ img {
 }
 
 .form-div {
-  width: 75%;
+  width: 400px;
   margin: 10px auto;
   height: 3em;
   padding: 0;
@@ -141,7 +143,7 @@ img {
 .form {
   display: flex;
   flex-flow: column;
-  width: 60%;
+  width: 100%;
   margin: 20px 0;
 }
 
