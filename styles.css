@@ -10,6 +10,7 @@ body {
     "sidebar cards";
   grid-template-columns: 300px 1fr;
   grid-template-rows: 450px 800px;
+  font-family: 'Open Sans';
 }
 
 h1 {
@@ -154,19 +155,17 @@ img {
   grid-area: cards;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   overflow: scroll;
 }
 
 .card {
-  height: 300px;
-  max-width: 300px;
-  min-width: 250px;
+  height: 350px;
+  width: 350px;
   border: 1px solid #1F1F3D;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 20px;
+  margin: 20px 15px 0px 15px;
 }
 
 .card-header {
@@ -183,11 +182,17 @@ img {
 
 .card-body {
   background-color: #FFFFFF;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
+  margin: 0px;
   height: 100%;
   padding: 0% 5% 0% 5%;
   font-size: 1.5em;
+}
+
+.card-body * {
+  margin: 0px;
 }
 
 .card-footer {
