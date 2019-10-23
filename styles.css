@@ -161,19 +161,17 @@ label,
   grid-area: cards;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   overflow: scroll;
 }
 
 .card {
-  height: 300px;
-  max-width: 300px;
-  min-width: 250px;
+  height: 350px;
+  width: 300px;
   border: 1px solid #1F1F3D;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 20px;
+  margin: 20px auto;
 }
 
 .card-header {
@@ -239,11 +237,6 @@ label,
   .nav-button-starbutton {
     width: 95%;
     margin: 0 auto;
-  }
-
-  .card {
-    max-width: 400px;
-    min-width: 399px;
   }
 }
 
