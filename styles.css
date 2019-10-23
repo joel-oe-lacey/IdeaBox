@@ -18,8 +18,8 @@ h1 {
 }
 
 img {
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
 }
 
 #search {
@@ -29,6 +29,8 @@ img {
 .nav {
   background-color: #1F1F3D;
   grid-area: sidebar;
+  color: white;
+  padding: 20px;
 }
 
 .nav-section {
@@ -171,23 +173,31 @@ img {
   background-color: #1F1F3D;
   display: flex;
   justify-content: space-between;
+  height: 12%;
 }
 
-.card-header button {
-  background-color: #1F1F3D;
+.card-header button, .card-footer button {
+  background-color: transparent;
   border: none;
 }
 
 .card-body {
-  background-color: #EAEAF4;
+  background-color: #FFFFFF;
   flex-direction: column;
   justify-content: flex-start;
+  height: 100%;
+  padding: 0% 5% 0% 5%;
+  font-size: 1.5em;
 }
 
 .card-footer {
-  background-color: #A9AAD2;
+  background-color: #3536A4;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  height: 12%;
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 730px) {
