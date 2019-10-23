@@ -2,19 +2,19 @@
   box-sizing: border-box;
 }
 
-.body {
+body {
   display: grid;
   margin: 0px;
   grid-template-areas:
     "sidebar form"
     "sidebar cards";
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 550px 800px;
-  font-family: 'Open Sans';
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 450px 800px;
 }
 
-h1, h3 {
-  font-family: 'Open Sans';
+h1 {
+  color: white;
+  margin: 25px;
 }
 
 img {
@@ -36,7 +36,7 @@ img {
 .nav-section {
   border-top: #353567 2px solid;
   border-bottom: #353567 2px solid;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -50,6 +50,8 @@ img {
 .nav-paragraph {
   color: #E9E9F3;
   font-size: 20px;
+  margin-bottom: 25px;
+  margin-top: 0;
 }
 
 .nav-button-starbutton {
@@ -57,7 +59,7 @@ img {
   background-color: #5356A4;
   border: #353567 2px solid;
   padding: 10px 0;
-  font-size: 180%;
+  font-size: 24px;
   border-radius: 3px;
 }
 
@@ -75,11 +77,11 @@ img {
 .form-input-title {
   width: 400px;
   font-size: 25px;
-  padding: 5px 0;
+  padding: 5px;
   margin: 0 auto 20px;
   border: #5356A4 2px solid;
   border-radius: 3px;
-  height: 2em;
+  height: 50px;
 }
 
 .idea-title-label,
@@ -92,8 +94,8 @@ img {
 .form-textarea-body {
   font-size: 25px;
   width: 400px;
-  height: 4em;
-  padding: 5px 0;
+  height: 100px;
+  padding: 5px;
   margin: 0 auto 15px;
   border: #5356A4 2px solid;
   border-radius: 3px;
@@ -108,13 +110,13 @@ img {
   background-color: #1F1F3D;
   border: #5356A4 2px solid;
   border-radius: 3px;
-  height: 2em;
+  height: 50px;
 }
 
 .form-div {
   width: 400px;
   margin: 10px auto;
-  height: 3em;
+  height: 50px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -125,21 +127,17 @@ img {
 
 .form-input-search {
   font-size: 16px;
+  height: 100%;
   width: 100%;
   border: none;
   margin: 5px;
 }
 
 .form-button-search {
-  height: 97%;
-  width: 3em;
+  height: 100%;
+  width: 50px;
   background-color: #1F1F3D;
   border: none;
-}
-
-#search {
-  height: 2em;
-  width: 2em;
 }
 
 .form {
@@ -156,18 +154,19 @@ img {
   grid-area: cards;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
   overflow: scroll;
 }
 
 .card {
-  height: 44%;
-  width: 29%;
-  border: 2px solid #1F1F3D;
+  height: 300px;
+  max-width: 300px;
+  min-width: 250px;
+  border: 1px solid #1F1F3D;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 2%;
+  margin: 20px;
 }
 
 .card-header {
@@ -182,7 +181,7 @@ img {
   border: none;
 }
 
-.card-div {
+.card-body {
   background-color: #FFFFFF;
   flex-direction: column;
   justify-content: flex-start;
@@ -199,4 +198,77 @@ img {
   font-size: 1.5em;
   height: 12%;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 730px) {
+  body {
+    grid-template-areas:
+    "nav"
+    "form"
+    "cards";
+    grid-template-columns: 1fr;
+    grid-template-rows: 210px 450px auto;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .nav {
+    grid-area: nav;
+  }
+
+  .nav-section {
+    height: 200px;
+  }
+
+  .nav-button-starbutton {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .card {
+    max-width: 400px;
+    min-width: 399px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  .nav-button-starbutton {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .form-input-title {
+    width: 95%;
+    margin: 0 auto 20px;
+  }
+
+  .idea-title-label,
+  .idea-body-label {
+    width: 95%;
+    margin: 5px auto;
+  }
+
+  .form-textarea-body {
+    width: 95%;
+    margin: 0 auto 20px;
+  }
+
+  .form-button-save {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .form-div {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .card {
+    min-width: 80%;
+    max-width: 95%;
+    margin: 20px auto;
+  }
 }
