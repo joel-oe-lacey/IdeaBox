@@ -10,6 +10,7 @@ body {
     "sidebar cards";
   grid-template-columns: 300px 1fr;
   grid-template-rows: 450px 800px;
+  font-family: 'Open Sans';
 }
 
 h1 {
@@ -18,17 +19,20 @@ h1 {
 }
 
 img {
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
 }
 
-#search {
+label,
+.nav-paragraph {
+  font-weight: bold;
 }
 
 /* NAV */
 .nav {
   background-color: #1F1F3D;
   grid-area: sidebar;
+  color: white;
 }
 
 .nav-section {
@@ -131,6 +135,11 @@ img {
   margin: 5px;
 }
 
+#search {
+  height: 25px;
+  width: 25px;
+}
+
 .form-button-search {
   height: 100%;
   width: 50px;
@@ -171,23 +180,31 @@ img {
   background-color: #1F1F3D;
   display: flex;
   justify-content: space-between;
+  height: 40px;
 }
 
-.card-header button {
-  background-color: #1F1F3D;
+.card-header button, .card-footer button {
+  background-color: transparent;
   border: none;
 }
 
 .card-body {
-  background-color: #EAEAF4;
+  background-color: #FFFFFF;
   flex-direction: column;
   justify-content: flex-start;
+  height: 100%;
+  padding: 0% 5% 0% 5%;
+  font-size: 1.5em;
 }
 
 .card-footer {
-  background-color: #A9AAD2;
+  background-color: #3536A4;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  height: 40px;
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 979px) {
