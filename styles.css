@@ -167,11 +167,11 @@ label,
 
 .card {
   height: 350px;
-  width: 300px;
+  width: 350px;
   border: 1px solid #1F1F3D;
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 20px 15px 0px 15px;
 }
 
 .card-header {
@@ -188,11 +188,17 @@ label,
 
 .card-body {
   background-color: #FFFFFF;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
+  margin: 0px;
   height: 100%;
   padding: 0% 5% 0% 5%;
   font-size: 1.5em;
+}
+
+.card-body * {
+  margin: 0px;
 }
 
 .card-footer {
