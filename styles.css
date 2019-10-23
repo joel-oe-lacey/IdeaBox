@@ -23,7 +23,9 @@ img {
   width: 40px;
 }
 
-#search {
+label,
+.nav-paragraph {
+  font-weight: bold;
 }
 
 /* NAV */
@@ -31,7 +33,6 @@ img {
   background-color: #1F1F3D;
   grid-area: sidebar;
   color: white;
-  padding: 20px;
 }
 
 .nav-section {
@@ -134,6 +135,11 @@ img {
   margin: 5px;
 }
 
+#search {
+  height: 25px;
+  width: 25px;
+}
+
 .form-button-search {
   height: 100%;
   width: 50px;
@@ -172,7 +178,7 @@ img {
   background-color: #1F1F3D;
   display: flex;
   justify-content: space-between;
-  height: 12%;
+  height: 40px;
 }
 
 .card-header button, .card-footer button {
@@ -201,8 +207,15 @@ img {
   justify-content: flex-start;
   align-items: center;
   font-size: 1.5em;
-  height: 12%;
+  height: 40px;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 979px) {
+  .card {
+    max-width: 400px;
+    min-width: 399px;
+  }
 }
 
 @media screen and (max-width: 730px) {
@@ -230,11 +243,6 @@ img {
   .nav-button-starbutton {
     width: 95%;
     margin: 0 auto;
-  }
-
-  .card {
-    max-width: 400px;
-    min-width: 399px;
   }
 }
 
