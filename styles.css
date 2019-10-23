@@ -101,6 +101,7 @@ label,
   margin: 0 auto 15px;
   border: #5356A4 2px solid;
   border-radius: 3px;
+  resize: none;
 }
 
 .form-button-save {
@@ -215,6 +216,10 @@ label,
   .card {
     max-width: 400px;
     min-width: 399px;
+  }
+
+  .section-cards {
+    justify-content: center;
   }
 }
 
