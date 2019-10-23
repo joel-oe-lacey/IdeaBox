@@ -190,6 +190,13 @@ img {
   justify-content: flex-start;
 }
 
+@media screen and (max-width: 979px) {
+  .card {
+    max-width: 400px;
+    min-width: 399px;
+  }
+}
+
 @media screen and (max-width: 730px) {
   body {
     grid-template-areas:
