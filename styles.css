@@ -179,7 +179,7 @@ img {
 }
 
 .card-body {
-  background-color: #FFFFFF;
+  background-color: #EAEAF4;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -216,47 +216,13 @@ img {
     width: 95%;
     margin: 0 auto;
   }
-/*
-  .form-input-title {
-    width: 95%;
-    margin: 0 auto 20px;
-  }
-
-  .idea-title-label,
-  .idea-body-label {
-    width: 95%;
-    margin: 5px auto;
-  }
-
-  .form-textarea-body {
-    width: 95%;
-    margin: 0 auto 20px;
-  }
-
-  .form-button-save {
-    width: 95%;
-    margin: 20px auto;
-  }
-
-  .form-div {
-    width: 95%;
-    margin: 10px auto;
-  }
-
-  .div-form {
-    grid-area: form;
-  }
-
-  .section-cards {
-    grid-area: cards;
-  }
 
   .card {
-    min-width: 80%;
-    max-width: 95%;
-    margin: 20px auto;
-  } */
+    max-width: 400px;
+    min-width: 399px;
+  }
 }
+
 @media screen and (max-width: 425px) {
 
   .nav-button-starbutton {
