@@ -4,7 +4,6 @@ var bodyInput = document.querySelector('.form-textarea-body');
 var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 
-//add event listner for click
 submit.addEventListener('click', function() {
     var titleValue = titleInput.value;
     var bodyValue = bodyInput.value;
@@ -18,5 +17,13 @@ submit.addEventListener('click', function() {
 cardSection.addEventListener('click', function() {
   if (event.target.id === 'delete') {
     event.target.parentNode.parentNode.parentNode.remove();
+  } else if (event.target.id === 'star') {
+    console.log(event);
+    var src = event.target.src;
+    if (src.includes('active')) {
+      event.target.src = "assets/star.svg";
+    } else {
+      event.target.src = "assets/star-active.svg";
+    }
   }
 });
