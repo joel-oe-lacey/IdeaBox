@@ -11,17 +11,23 @@ submit.addEventListener('click', function() {
     var bodyValue = bodyInput.value;
     var userCard = new Idea(titleValue, bodyValue);
     allCards.push(userCard);
+    //call HTML card addition helper function
     var cardHTML = userCard.saveToStorage(userCard);
 
     cardSection.innerHTML += cardHTML;
+
+    //create formReset helper
     titleInput.value = "";
     bodyInput.value = "";
     submit.disabled = true;
 });
 
 cardSection.addEventListener('click', function() {
+    //delete handing helper function
   if (event.target.id === 'delete') {
     event.target.parentNode.parentNode.parentNode.remove();
+
+    //star change helper function
   } else if (event.target.id === 'star') {
     console.log(event);
     var src = event.target.src;
@@ -48,10 +54,22 @@ function enableButton() {
 
 function toggleStar(event, id) {
   var id = event.target.parentNode.parentNode.parentNode.id;
+  console.log(event);
 
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
       allCards[i].starred = !allCards[i].starred;
+    }
+  }
+}
+
+function cardRemove(event, id) {
+  var id = event.target.parentNode.parentNode.parentNode.id;
+
+  for (var i = 0; i < allCards.length; i++) {
+    if(allCards[i].id.toString() === id) {
+      //try use filter
+      allCards.splice(i, 1);
     }
   }
 }
