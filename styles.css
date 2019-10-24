@@ -114,6 +114,12 @@ label,
   border: #5356A4 2px solid;
   border-radius: 3px;
   height: 50px;
+  cursor: pointer;
+}
+
+.form-button-save:disabled {
+  opacity: 0.50;
+  cursor: default;
 }
 
 .form-div {
