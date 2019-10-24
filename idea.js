@@ -1,4 +1,4 @@
-class Card {
+class Idea {
   constructor(title, body) {
     this.id = Date.now();
     this.title = title;
@@ -8,7 +8,7 @@ class Card {
   }
 
   saveToStorage() {
-    return `<article class="card">
+    return `<article class="card" id="${this.id}">
               <div class="card-header">
                 <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
                 <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>

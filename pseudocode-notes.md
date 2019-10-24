@@ -18,3 +18,7 @@ For star functionality
 //also need to store ID value somewhere in the HTML of the card so it can be referenced back later
 //to change star value need to change image based on star status
 //but also need to go into total card array list, reference ID value of card, and set this.starred to true, do inverse if unchecking.
+
+
+To target an item in the class
+go into array 

@@ -4,12 +4,14 @@ var bodyInput = document.querySelector('.form-textarea-body');
 var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
+var allCards = [];
 
 submit.addEventListener('click', function() {
     var titleValue = titleInput.value;
     var bodyValue = bodyInput.value;
-    var userCard = new Card(titleValue, bodyValue);
-    var cardHTML = userCard.saveToStorage();
+    var userCard = new Idea(titleValue, bodyValue);
+    allCards.push(userCard);
+    var cardHTML = userCard.saveToStorage(userCard);
 
     cardSection.innerHTML += cardHTML;
     titleInput.value = "";
@@ -23,6 +25,7 @@ cardSection.addEventListener('click', function() {
   } else if (event.target.id === 'star') {
     console.log(event);
     var src = event.target.src;
+    toggleStar(event);
     if (src.includes('active')) {
       event.target.src = "assets/star.svg";
     } else {
@@ -42,3 +45,13 @@ function enableButton() {
     submit.disabled = false;
   }
 };
+
+function toggleStar(event, id) {
+  var id = event.target.parentNode.parentNode.parentNode.id;
+
+  for (var i = 0; i < allCards.length; i++) {
+    if(allCards[i].id.toString() === id) {
+      allCards[i].starred = !allCards[i].starred;
+    }
+  }
+}
