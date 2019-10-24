@@ -15,7 +15,21 @@ submit.addEventListener('click', function() {
     titleInput.value = "";
     bodyInput.value = "";
     submit.disabled = true;
-})
+});
+
+cardSection.addEventListener('click', function() {
+  if (event.target.id === 'delete') {
+    event.target.parentNode.parentNode.parentNode.remove();
+  } else if (event.target.id === 'star') {
+    console.log(event);
+    var src = event.target.src;
+    if (src.includes('active')) {
+      event.target.src = "assets/star.svg";
+    } else {
+      event.target.src = "assets/star-active.svg";
+    }
+  }
+});
 
 titleInput.addEventListener('keydown', enableButton);
 bodyInput.addEventListener('keydown', enableButton);
@@ -27,4 +41,4 @@ function enableButton() {
   if (titleValue !== "" && bodyValue !== "") {
     submit.disabled = false;
   }
-}
+};
