@@ -13,4 +13,10 @@ submit.addEventListener('click', function() {
     var cardHTML = userCard.saveToStorage();
 
     cardSection.innerHTML += cardHTML;
-})
+});
+
+cardSection.addEventListener('click', function() {
+  if (event.target.id === 'delete') {
+    event.target.parentNode.parentNode.parentNode.remove();
+  }
+});
