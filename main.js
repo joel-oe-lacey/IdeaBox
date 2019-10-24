@@ -45,3 +45,13 @@ function enableButton() {
     submit.disabled = false;
   }
 };
+
+function toggleStar(event, id) {
+  var id = event.target.parentNode.parentNode.parentNode.id;
+
+  for (var i = 0; i < allCards.length; i++) {
+    if(allCards[i].id.toString() === id) {
+      allCards[i].starred = !allCards[i].starred;
+    }
+  }
+}
