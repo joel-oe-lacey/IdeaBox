@@ -5,6 +5,10 @@ var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
 var allCards = [];
+var buttonOpen = document.querySelector('.nav-button-open');
+var buttonClose = document.querySelector('.nav-button-close');
+var navSection = document.querySelector('.nav-section');
+var image = document.getElementById('menu');
 
 submit.addEventListener('click', function() {
     var titleValue = titleInput.value;
@@ -13,14 +17,15 @@ submit.addEventListener('click', function() {
     allCards.push(userCard);
     //call HTML card addition helper function
     var cardHTML = userCard.saveToStorage(userCard);
-
     cardSection.innerHTML += cardHTML;
-
-    //create formReset helper
-    titleInput.value = "";
-    bodyInput.value = "";
-    submit.disabled = true;
+    formReset();
 });
+
+function formReset() {
+  titleInput.value = "";
+  bodyInput.value = "";
+  submit.disabled = true;
+};
 
 cardSection.addEventListener('click', function() {
     //delete handing helper function
@@ -63,6 +68,21 @@ function toggleStar(event) {
   }
 }
 
+buttonOpen.addEventListener('click', menuDropdown);
+function menuDropdown() {
+  var hide = document.querySelector('.hidden-section');
+  navSection.classList.toggle('show');
+  buttonOpen.classList.toggle('nav-button-close');
+  hide.classList.toggle('hide');
+
+}
+
+// if (image.src = "assets/menu.svg") {
+//   console.log('1');
+//   image.src = "assets/menu-close.svg"
+// } if (image.src = "assets/menu-close.svg") {
+//   console.log('2');
+//   image.src = "assets/menu.svg";
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
     var deleteId = event.target.parentNode.parentNode.parentNode.id;

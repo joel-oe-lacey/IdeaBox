@@ -9,14 +9,14 @@
   </head>
   <body>
     <nav class="nav">
+      <button class="nav-button-open hide" type="button" name="button"></button>
       <h1>IdeaBox</h1>
       <section class="nav-section">
-        <button class="nav-button-open hide" type="button" name="button"><img id="menu" src="assets/menu.svg"/></button>
-        <button class="nav-button-close hide" type="button" name="button"><img id="menu-close" src="assets/menu-close.svg"/></button>
         <p class="nav-paragraph">Filter Starred Ideas</p>
         <button class="nav-button-starbutton" type="button" name="star-show">Show Starred Ideas</button>
       </section>
     </nav>
+    <div class="hidden-section">
       <div class="div-form">
         <form class="form" action="index.html" method="post">
           <label class="idea-title-label" for="idea-title">Title</label>
@@ -32,6 +32,7 @@
       </div>
       <section class="section-cards">
       </section>
+    </div>
   </body>
   <footer>
     <script src="idea.js"></script>
