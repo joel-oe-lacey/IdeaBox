@@ -7,6 +7,8 @@ class Idea {
     this.starred = false;
   }
 
+//use this for local storage
+//move HTML card insert to helper function
   saveToStorage() {
     return `<article class="card" id="${this.id}">
               <div class="card-header">
