@@ -5,23 +5,34 @@ var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
 var allCards = [];
+var buttonOpen = document.querySelector('.nav-button-open');
+var buttonClose = document.querySelector('.nav-button-close');
+var navSection = document.querySelector('.nav-section');
+var image = document.getElementById('menu');
 
 submit.addEventListener('click', function() {
     var titleValue = titleInput.value;
     var bodyValue = bodyInput.value;
     var userCard = new Idea(titleValue, bodyValue);
     allCards.push(userCard);
+    //call HTML card addition helper function
     var cardHTML = userCard.saveToStorage(userCard);
-
     cardSection.innerHTML += cardHTML;
-    titleInput.value = "";
-    bodyInput.value = "";
-    submit.disabled = true;
+    formReset();
 });
 
+function formReset() {
+  titleInput.value = "";
+  bodyInput.value = "";
+  submit.disabled = true;
+};
+
 cardSection.addEventListener('click', function() {
+    //delete handing helper function
   if (event.target.id === 'delete') {
     event.target.parentNode.parentNode.parentNode.remove();
+
+    //star change helper function
   } else if (event.target.id === 'star') {
     console.log(event);
     var src = event.target.src;
@@ -48,6 +59,7 @@ function enableButton() {
 
 function toggleStar(event, id) {
   var id = event.target.parentNode.parentNode.parentNode.id;
+  console.log(event);
 
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
@@ -55,3 +67,30 @@ function toggleStar(event, id) {
     }
   }
 }
+
+function cardRemove(event, id) {
+  var id = event.target.parentNode.parentNode.parentNode.id;
+
+  for (var i = 0; i < allCards.length; i++) {
+    if(allCards[i].id.toString() === id) {
+      //try use filter
+      allCards.splice(i, 1);
+    }
+  }
+}
+
+buttonOpen.addEventListener('click', menuDropdown);
+function menuDropdown() {
+  var hide = document.querySelector('.hidden-section');
+  navSection.classList.toggle('show');
+  buttonOpen.classList.toggle('nav-button-close');
+  hide.classList.toggle('hide');
+
+}
+
+// if (image.src = "assets/menu.svg") {
+//   console.log('1');
+//   image.src = "assets/menu-close.svg"
+// } if (image.src = "assets/menu-close.svg") {
+//   console.log('2');
+//   image.src = "assets/menu.svg";
