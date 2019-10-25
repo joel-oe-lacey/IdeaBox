@@ -26,7 +26,7 @@ cardSection.addEventListener('click', function() {
     //delete handing helper function
   if (event.target.id === 'delete') {
     event.target.parentNode.parentNode.parentNode.remove();
-
+    cardRemove(event);
     //star change helper function
   } else if (event.target.id === 'star') {
     console.log(event);
@@ -52,7 +52,7 @@ function enableButton() {
   }
 };
 
-function toggleStar(event, id) {
+function toggleStar(event) {
   var id = event.target.parentNode.parentNode.parentNode.id;
   console.log(event);
 
@@ -63,13 +63,14 @@ function toggleStar(event, id) {
   }
 }
 
-function cardRemove(event, id) {
-  var id = event.target.parentNode.parentNode.parentNode.id;
+function cardRemove(event) {
+  allCards = allCards.filter(allCards => {
+    var deleteId = event.target.parentNode.parentNode.parentNode.id;
+    return allCards.id.toString() !== deleteId;
+  });
+}
 
-  for (var i = 0; i < allCards.length; i++) {
-    if(allCards[i].id.toString() === id) {
-      //try use filter
-      allCards.splice(i, 1);
-    }
-  }
+function idNoMatchFilter(event) {
+  var deleteId = event.target.parentNode.parentNode.parentNode.id;
+  return allCards.id.toString() !== deleteId;
 }
