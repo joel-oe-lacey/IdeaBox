@@ -15,6 +15,10 @@ submit.addEventListener('click', function() {
     var bodyValue = bodyInput.value;
     var userCard = new Idea(titleValue, bodyValue);
     allCards.push(userCard);
+
+    var jsonObject = JSON.stringify(userCard);
+    localStorage.setItem(userCard.id, jsonObject);
+
     //call HTML card addition helper function
     var cardHTML = userCard.saveToStorage(userCard);
     cardSection.innerHTML += cardHTML;
@@ -86,11 +90,13 @@ function menuDropdown() {
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
     var deleteId = event.target.parentNode.parentNode.parentNode.id;
+    localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
 }
 
 function idNoMatchFilter(event) {
   var deleteId = event.target.parentNode.parentNode.parentNode.id;
+  localStorage.removeItem(deleteId);
   return allCards.id.toString() !== deleteId;
 }

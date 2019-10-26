@@ -21,4 +21,15 @@ For star functionality
 
 
 To target an item in the class
-go into array 
+go into array
+
+
+// on addition
+  // stringify JSON.stringify(objectToStore) take that object
+  // 
+
+
+//onPageLoad
+  //loop through local storage, pull all items
+  //inject them into all cards array
+  //iterate through all cards array and push in innerHTML
