@@ -90,6 +90,7 @@ function menuDropdown() {
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
     var deleteId = event.target.parentNode.parentNode.parentNode.id;
+    localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
 }
