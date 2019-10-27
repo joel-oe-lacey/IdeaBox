@@ -20,7 +20,7 @@ submit.addEventListener('click', function() {
     localStorage.setItem(userCard.id, jsonObject);
 
     //call HTML card addition helper function
-    var cardHTML = userCard.saveToStorage(userCard);
+    var cardHTML = createCard(userCard);
     cardSection.innerHTML += cardHTML;
     formReset();
 });
@@ -29,6 +29,37 @@ function formReset() {
   titleInput.value = "";
   bodyInput.value = "";
   submit.disabled = true;
+};
+
+window.onload = loadCards;
+
+function createCard(idea) {
+  return `<article class="card" id="${idea.id}">
+            <div class="card-header">
+              <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
+              <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
+            </div>
+            <div class="card-body">
+              <h3 class="card-header-title">${idea.title}</h3>
+              <p class="card-p-text">${idea.body}</p>
+            </div>
+            <div class="card-footer">
+              <button class="card-button-edit" type="button" name="comment-button"><img id="comment" src="assets/comment.svg"/></button>
+              <label class="button-label-edit" for="">Comment</label>
+            </div>
+          </article>`
+}
+
+function loadCards() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var object = localStorage.getItem(key);
+    var parsedObject = JSON.parse(object);
+    allCards[i] = parsedObject;
+
+    var cardHTML = createCard(parsedObject);
+    cardSection.innerHTML += cardHTML;
+  }
 };
 
 cardSection.addEventListener('click', function() {
