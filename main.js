@@ -83,6 +83,15 @@ cardSection.addEventListener('click', function() {
 titleInput.addEventListener('keydown', enableButton);
 bodyInput.addEventListener('keydown', enableButton);
 
+function cardStorageRefresh() {
+  localStorage.clear();
+  for (var i = 0; i < allCards.length; i++) {
+    var userCard = allCards[i];
+    var jsonObject = JSON.stringify(userCard);
+    localStorage.setItem(userCard.id, jsonObject);
+  }
+}
+
 function enableButton() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
@@ -94,13 +103,13 @@ function enableButton() {
 
 function toggleStar(event) {
   var id = event.target.parentNode.parentNode.parentNode.id;
-  console.log(event);
 
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
       allCards[i].starred = !allCards[i].starred;
     }
   }
+  cardStorageRefresh();
 }
 
 buttonOpen.addEventListener('click', menuDropdown);
