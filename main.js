@@ -143,16 +143,11 @@ function menuDropdown() {
 // } if (image.src = "assets/menu-close.svg") {
 //   console.log('2');
 //   image.src = "assets/menu.svg";
+
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
     var deleteId = event.target.parentNode.parentNode.parentNode.id;
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-};
-
-function idNoMatchFilter(event) {
-  var deleteId = event.target.parentNode.parentNode.parentNode.id;
-  localStorage.removeItem(deleteId);
-  return allCards.id.toString() !== deleteId;
 };
