@@ -63,22 +63,30 @@ function loadCards() {
 };
 
 cardSection.addEventListener('click', function() {
-    //delete handing helper function
-  if (event.target.id === 'delete') {
-    event.target.parentNode.parentNode.parentNode.remove();
-    cardRemove(event);
-    //star change helper function
-  } else if (event.target.id === 'star') {
-    console.log(event);
-    var src = event.target.src;
-    toggleStar(event);
-    if (src.includes('active')) {
-      event.target.src = "assets/star.svg";
-    } else {
-      event.target.src = "assets/star-active.svg";
-    }
-  }
+  cardEvent(event);
 });
+
+function cardEvent(event) {
+  switch (event.target.id) {
+    case 'delete':
+      event.target.parentNode.parentNode.parentNode.remove();
+      cardRemove(event);
+      break;
+    case 'star':
+      toggleStar(event);
+      starImgChg(event);
+      break;
+  }
+}
+
+function starImgChg(event) {
+  var src = event.target.src;
+  if (src.includes('active')) {
+    event.target.src = "assets/star.svg";
+  } else {
+    event.target.src = "assets/star-active.svg";
+  }
+}
 
 titleInput.addEventListener('keydown', enableButton);
 bodyInput.addEventListener('keydown', enableButton);
