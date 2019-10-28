@@ -51,7 +51,7 @@ function createCardObject() {
   var userCard = new Idea(titleValue, bodyValue);
   allCards.push(userCard);
   return userCard;
-}
+};
 
 function createCardHTML(idea) {
   return `<article class="card" id="${idea.id}">
@@ -68,7 +68,7 @@ function createCardHTML(idea) {
               <label class="button-label-edit" for="">Comment</label>
             </div>
           </article>`
-}
+};
 
 
 cardSection.addEventListener('click', function() {
@@ -86,7 +86,7 @@ function cardEvent(event) {
       starImgChg(event);
       break;
   }
-}
+};
 
 function starImgChg(event) {
   var src = event.target.src;
@@ -95,7 +95,7 @@ function starImgChg(event) {
   } else {
     event.target.src = "assets/star-active.svg";
   }
-}
+};
 
 titleInput.addEventListener('keydown', enableButton);
 bodyInput.addEventListener('keydown', enableButton);
@@ -107,7 +107,7 @@ function cardStorageRefresh() {
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(userCard.id, jsonObject);
   }
-}
+};
 
 function enableButton() {
   var titleValue = titleInput.value;
@@ -127,7 +127,7 @@ function toggleStar(event) {
     }
   }
   cardStorageRefresh();
-}
+};
 
 buttonOpen.addEventListener('click', menuDropdown);
 function menuDropdown() {
@@ -135,8 +135,7 @@ function menuDropdown() {
   navSection.classList.toggle('show');
   buttonOpen.classList.toggle('nav-button-close');
   hide.classList.toggle('hide');
-
-}
+};
 
 // if (image.src = "assets/menu.svg") {
 //   console.log('1');
@@ -150,10 +149,10 @@ function cardRemove(event) {
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-}
+};
 
 function idNoMatchFilter(event) {
   var deleteId = event.target.parentNode.parentNode.parentNode.id;
   localStorage.removeItem(deleteId);
   return allCards.id.toString() !== deleteId;
-}
+};
