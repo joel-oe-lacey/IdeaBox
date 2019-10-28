@@ -9,20 +9,8 @@ class Idea {
 
 //use this for local storage
 //move HTML card insert to helper function
-  saveToStorage() {
-    return `<article class="card" id="${this.id}">
-              <div class="card-header">
-                <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
-                <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
-              </div>
-              <div class="card-body">
-                <h3 class="card-header-title">${this.title}</h3>
-                <p class="card-p-text">${this.body}</p>
-              </div>
-              <div class="card-footer">
-                <button class="card-button-edit" type="button" name="comment-button"><img id="comment" src="assets/comment.svg"/></button>
-                <label class="button-label-edit" for="">Comment</label>
-              </div>
-            </article>`
+  saveToStorage(userCard) {
+    var jsonObject = JSON.stringify(userCard);
+    localStorage.setItem(this.id, jsonObject);
   }
 }

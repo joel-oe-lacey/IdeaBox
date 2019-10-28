@@ -6,24 +6,21 @@ var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
 var allCards = [];
 var buttonOpen = document.querySelector('.nav-button-open');
-var buttonClose = document.querySelector('.nav-button-close');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
 
-submit.addEventListener('click', function() {
-    var titleValue = titleInput.value;
-    var bodyValue = bodyInput.value;
-    var userCard = new Idea(titleValue, bodyValue);
-    allCards.push(userCard);
+submit.addEventListener('click', submitNewIdea);
 
-    var jsonObject = JSON.stringify(userCard);
-    localStorage.setItem(userCard.id, jsonObject);
-
-    //call HTML card addition helper function
-    var cardHTML = createCard(userCard);
-    cardSection.innerHTML += cardHTML;
-    formReset();
-});
+function submitNewIdea() {
+  var titleValue = titleInput.value;
+  var bodyValue = bodyInput.value;
+  var userCard = new Idea(titleValue, bodyValue);
+  //Should change var userCard to var newIdea or something similar--should follow suite with idea.js and class Idea
+  allCards.push(userCard);
+  userCard.saveToStorage(userCard);
+  createCard(userCard);
+  formReset();
+};
 
 function formReset() {
   titleInput.value = "";
@@ -34,7 +31,8 @@ function formReset() {
 window.onload = loadCards;
 
 function createCard(idea) {
-  return `<article class="card" id="${idea.id}">
+  return cardSection.innerHTML +=
+          `<article class="card" id="${idea.id}">
             <div class="card-header">
               <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
               <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
@@ -58,7 +56,6 @@ function loadCards() {
     allCards[i] = parsedObject;
 
     var cardHTML = createCard(parsedObject);
-    cardSection.innerHTML += cardHTML;
   }
 };
 
@@ -80,8 +77,8 @@ cardSection.addEventListener('click', function() {
   }
 });
 
-titleInput.addEventListener('keydown', enableButton);
-bodyInput.addEventListener('keydown', enableButton);
+titleInput.addEventListener('keyup', enableButton);
+bodyInput.addEventListener('keyup', enableButton);
 
 function cardStorageRefresh() {
   localStorage.clear();
@@ -98,6 +95,8 @@ function enableButton() {
 
   if (titleValue !== "" && bodyValue !== "") {
     submit.disabled = false;
+    } if (titleValue === "" || bodyValue === "") {
+      submit.disabled = true;
   }
 };
 
@@ -121,12 +120,6 @@ function menuDropdown() {
 
 }
 
-// if (image.src = "assets/menu.svg") {
-//   console.log('1');
-//   image.src = "assets/menu-close.svg"
-// } if (image.src = "assets/menu-close.svg") {
-//   console.log('2');
-//   image.src = "assets/menu.svg";
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
     var deleteId = event.target.parentNode.parentNode.parentNode.id;

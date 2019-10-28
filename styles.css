@@ -151,6 +151,7 @@ label,
 
 .form-button-save:disabled {
   opacity: 0.50;
+  cursor: default;
 }
 
 .form-div {
