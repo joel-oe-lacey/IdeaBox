@@ -10,17 +10,31 @@ var buttonClose = document.querySelector('.nav-button-close');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
 
-submit.addEventListener('click', function() {
-    var titleValue = titleInput.value;
-    var bodyValue = bodyInput.value;
-    var userCard = new Idea(titleValue, bodyValue);
-    allCards.push(userCard);
+window.onload = loadCards;
 
+function loadCards() {
+  //currently reverses order of newly added cards on page load, should retain submitted order
+  for (var i = 0; i < localStorage.length; i++) {
+    var cardKey = localStorage.key(i);
+    var cardObject = localStorage.getItem(cardKey);
+    var parsedCardObject = JSON.parse(cardObject);
+    allCards[i] = parsedCardObject;
+
+    var cardHTML = createCardHTML(parsedCardObject);
+    cardSection.innerHTML += cardHTML;
+  }
+};
+
+
+submit.addEventListener('click', function() {
+    var userCard = createCardObject();
+
+    //use this as the saveToStorage method of the Idea class?
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(userCard.id, jsonObject);
 
     //call HTML card addition helper function
-    var cardHTML = createCard(userCard);
+    var cardHTML = createCardHTML(userCard);
     cardSection.innerHTML += cardHTML;
     formReset();
 });
@@ -31,9 +45,15 @@ function formReset() {
   submit.disabled = true;
 };
 
-window.onload = loadCards;
+function createCardObject() {
+  var titleValue = titleInput.value;
+  var bodyValue = bodyInput.value;
+  var userCard = new Idea(titleValue, bodyValue);
+  allCards.push(userCard);
+  return userCard;
+}
 
-function createCard(idea) {
+function createCardHTML(idea) {
   return `<article class="card" id="${idea.id}">
             <div class="card-header">
               <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
@@ -50,17 +70,6 @@ function createCard(idea) {
           </article>`
 }
 
-function loadCards() {
-  for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    var object = localStorage.getItem(key);
-    var parsedObject = JSON.parse(object);
-    allCards[i] = parsedObject;
-
-    var cardHTML = createCard(parsedObject);
-    cardSection.innerHTML += cardHTML;
-  }
-};
 
 cardSection.addEventListener('click', function() {
   cardEvent(event);
