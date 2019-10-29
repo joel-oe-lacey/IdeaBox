@@ -1,10 +1,9 @@
 class Idea {
-  constructor(title, body) {
-    this.id = Date.now();
-    this.title = title;
-    this.body = body;
-    //should be false by default
-    this.starred = false;
+  constructor(card) {
+    this.id = card.id;
+    this.title = card.title;
+    this.body = card.body;
+    this.starred = card.starred;
   }
 
 //use this for local storage
@@ -12,5 +11,13 @@ class Idea {
   saveToStorage(userCard) {
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(this.id, jsonObject);
-  }
+  };
+
+  deleteFromStorage(passedEvent) {
+
+  };
+
+  updateIdea(passedEvent) {
+
+  };
 }
