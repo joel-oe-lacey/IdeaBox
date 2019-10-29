@@ -12,21 +12,31 @@ var allCards = [];
 submit.addEventListener('click', submitNewIdea);
 titleInput.addEventListener('keyup', enableButton);
 bodyInput.addEventListener('keyup', enableButton);
+window.onload = loadCards;
 cardSection.addEventListener('click', function() {
   cardEvent(event.target);
 });
-window.onload = loadCards;
 buttonOpen.addEventListener('click', menuDropdown);
 
 function submitNewIdea() {
+  var card = createCardObject();
+  createCard(card);
+  formReset();
+};
+
+function createCardObject() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
-  var userCard = new Idea(titleValue, bodyValue);
-  //Should change var userCard to var newIdea or something similar--should follow suite with idea.js and class Idea
+  var cardObj = {
+    id:Date.now(),
+    title:titleValue,
+    body:bodyValue,
+    starred:false,
+  };
+  var userCard = new Idea(cardObj);
   allCards.push(userCard);
   userCard.saveToStorage(userCard);
-  createCard(userCard);
-  formReset();
+  return userCard;
 };
 
 function formReset() {
@@ -36,10 +46,11 @@ function formReset() {
 };
 
 function createCard(idea) {
+  var starStatus = starLoad(idea);
   return cardSection.innerHTML +=
           `<article class="card" data-id="${idea.id}">
             <div class="card-header">
-              <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
+              <button class="card-button-star" type="button" name="star-button"><img id="star" src="${starStatus}"/></button>
               <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
             </div>
             <div class="card-body">
@@ -51,17 +62,34 @@ function createCard(idea) {
               <label class="button-label-edit" for="">Comment</label>
             </div>
           </article>`
-}
+};
 
 function loadCards() {
   for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     var object = localStorage.getItem(key);
-    var parsedObject = JSON.parse(object);
-    allCards[i] = parsedObject;
+    var card = JSON.parse(object);
+    var instanciatedIdea = new Idea(card);
+    allCards[i] = instanciatedIdea;
+  };
+  orderLoadedCards();
+};
 
-    var cardHTML = createCard(parsedObject);
+function starLoad(idea) {
+  if (idea.starred) {
+    return "assets/star-active.svg";
+  } else {
+    return "assets/star.svg";
   }
+}
+
+function orderLoadedCards() {
+  allCards.sort(function(a, b) {
+    return a.id - b.id;
+  });
+  for (var i = 0; i < allCards.length; i++) {
+    createCard(allCards[i]);
+  };
 };
 
 function cardEvent(passedEvent) {
@@ -98,7 +126,6 @@ function cardStorageRefresh() {
 function enableButton() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
-
   if (titleValue !== "" && bodyValue !== "") {
     submit.disabled = false;
     } if (titleValue === "" || bodyValue === "") {
@@ -106,35 +133,27 @@ function enableButton() {
   }
 };
 
-function toggleStar(event) {
-  var id = event.target.parentNode.parentNode.parentNode.dataset.id;
-
+function toggleStar(passedEvent) {
+  var id = passedEvent.parentNode.parentNode.parentNode.dataset.id;
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
       allCards[i].starred = !allCards[i].starred;
-    }
-  }
+    };
+  };
   cardStorageRefresh();
-}
+};
 
 function menuDropdown() {
   var hide = document.querySelector('.hidden-section');
   navSection.classList.toggle('show');
   buttonOpen.classList.toggle('nav-button-close');
   hide.classList.toggle('hide');
+};
 
-}
-
-function cardRemove(event) {
+function cardRemove(passedEvent) {
   allCards = allCards.filter(allCards => {
-    var deleteId = event.target.parentNode.parentNode.parentNode.dataset.id;
+    var deleteId = passedEvent.parentNode.parentNode.parentNode.dataset.id;
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-}
-
-function idNoMatchFilter(event) {
-  var deleteId = event.target.parentNode.parentNode.parentNode.dataset.id;
-  localStorage.removeItem(deleteId);
-  return allCards.id.toString() !== deleteId;
-}
+};
