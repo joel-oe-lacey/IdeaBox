@@ -4,12 +4,16 @@ var bodyInput = document.querySelector('.form-textarea-body');
 var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
-var allCards = [];
 var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
+var allCards = [];
 
 submit.addEventListener('click', submitNewIdea);
+titleInput.addEventListener('keyup', enableButton);
+bodyInput.addEventListener('keyup', enableButton);
+window.onload = loadCards;
+buttonOpen.addEventListener('click', menuDropdown);
 
 function submitNewIdea() {
   var titleValue = titleInput.value;
@@ -27,8 +31,6 @@ function formReset() {
   bodyInput.value = "";
   submit.disabled = true;
 };
-
-window.onload = loadCards;
 
 function createCard(idea) {
   return cardSection.innerHTML +=
@@ -77,9 +79,6 @@ cardSection.addEventListener('click', function() {
   }
 });
 
-titleInput.addEventListener('keyup', enableButton);
-bodyInput.addEventListener('keyup', enableButton);
-
 function cardStorageRefresh() {
   localStorage.clear();
   for (var i = 0; i < allCards.length; i++) {
@@ -111,7 +110,6 @@ function toggleStar(event) {
   cardStorageRefresh();
 }
 
-buttonOpen.addEventListener('click', menuDropdown);
 function menuDropdown() {
   var hide = document.querySelector('.hidden-section');
   navSection.classList.toggle('show');
