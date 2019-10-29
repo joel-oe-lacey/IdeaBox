@@ -121,7 +121,7 @@ function cardStorageRefresh() {
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(userCard.id, jsonObject);
   }
-}
+};
 
 function enableButton() {
   var titleValue = titleInput.value;
