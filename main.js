@@ -37,7 +37,7 @@ function formReset() {
 
 function createCard(idea) {
   return cardSection.innerHTML +=
-          `<article class="card" id="${idea.id}">
+          `<article class="card" data-id="${idea.id}">
             <div class="card-header">
               <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
               <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
@@ -107,7 +107,7 @@ function enableButton() {
 };
 
 function toggleStar(event) {
-  var id = event.target.parentNode.parentNode.parentNode.id;
+  var id = event.target.parentNode.parentNode.parentNode.dataset.id;
 
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
@@ -127,14 +127,14 @@ function menuDropdown() {
 
 function cardRemove(event) {
   allCards = allCards.filter(allCards => {
-    var deleteId = event.target.parentNode.parentNode.parentNode.id;
+    var deleteId = event.target.parentNode.parentNode.parentNode.dataset.id;
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
 }
 
 function idNoMatchFilter(event) {
-  var deleteId = event.target.parentNode.parentNode.parentNode.id;
+  var deleteId = event.target.parentNode.parentNode.parentNode.dataset.id;
   localStorage.removeItem(deleteId);
   return allCards.id.toString() !== deleteId;
 }
