@@ -8,6 +8,8 @@ var allCards = [];
 var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
+var searchBtn = document.querySelector('.form-button-search');
+var searchInput = document.querySelector('.form-input-search');
 
 submit.addEventListener('click', submitNewIdea);
 
@@ -133,3 +135,30 @@ function idNoMatchFilter(event) {
   localStorage.removeItem(deleteId);
   return allCards.id.toString() !== deleteId;
 }
+
+searchInput.addEventListener('keyup', search);
+
+function search() {
+  var searchValue = searchInput.value.toLowerCase();
+  cardSection.innerHTML = "";
+  for (var i = 0; i < allCards.length; i++) {
+    if (allCards[i].title.toLowerCase().includes(searchValue) || allCards[i].body.toLowerCase().includes(searchValue)) {
+      createCard(allCards[i]);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// aaaaa
