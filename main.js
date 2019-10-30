@@ -8,6 +8,7 @@ var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
 var allCards = [];
+var showStarBtn = document.querySelector('.nav-button-starbutton');
 
 submit.addEventListener('click', submitNewIdea);
 titleInput.addEventListener('keyup', enableButton);
@@ -17,6 +18,24 @@ cardSection.addEventListener('click', function() {
   cardEvent(event.target);
 });
 buttonOpen.addEventListener('click', menuDropdown);
+showStarBtn.addEventListener('click', showStarred);
+
+function showStarred() {
+  cardSection.innerHTML = '';
+  if(showStarBtn.innerText === 'Show Starred Ideas') {
+    showStarBtn.innerText = 'Show All';
+    for (var i = 0; i < allCards.length; i++) {
+      if (allCards[i].starred) {
+        createCard(allCards[i]);
+      }
+    }
+  } else {
+    showStarBtn.innerText = 'Show Starred Ideas';
+    for (var i = 0; i < allCards.length; i++) {
+        createCard(allCards[i]);
+    }
+  }
+};
 
 function submitNewIdea() {
   var card = createCardObject();
