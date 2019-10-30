@@ -4,24 +4,42 @@ var bodyInput = document.querySelector('.form-textarea-body');
 var submit = document.querySelector('.form-button-save');
 var cardSection = document.querySelector('.section-cards');
 var form = document.querySelector('.form');
-var allCards = [];
 var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
 var searchBtn = document.querySelector('.form-button-search');
 var searchInput = document.querySelector('.form-input-search');
+var allCards = [];
 
 submit.addEventListener('click', submitNewIdea);
+titleInput.addEventListener('keyup', enableButton);
+bodyInput.addEventListener('keyup', enableButton);
+window.onload = loadCards;
+cardSection.addEventListener('click', function() {
+  cardEvent(event.target);
+});
+buttonOpen.addEventListener('click', menuDropdown);
+searchInput.addEventListener('keyup', search);
 
 function submitNewIdea() {
+  var card = createCardObject();
+  createCard(card);
+  formReset();
+};
+
+function createCardObject() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
-  var userCard = new Idea(titleValue, bodyValue);
-  //Should change var userCard to var newIdea or something similar--should follow suite with idea.js and class Idea
+  var cardObj = {
+    id:Date.now(),
+    title:titleValue,
+    body:bodyValue,
+    starred:false,
+  };
+  var userCard = new Idea(cardObj);
   allCards.push(userCard);
   userCard.saveToStorage(userCard);
-  createCard(userCard);
-  formReset();
+  return userCard;
 };
 
 function formReset() {
@@ -30,13 +48,12 @@ function formReset() {
   submit.disabled = true;
 };
 
-window.onload = loadCards;
-
 function createCard(idea) {
+  var starStatus = starLoad(idea);
   return cardSection.innerHTML +=
-          `<article class="card" id="${idea.id}">
+          `<article class="card" data-id="${idea.id}">
             <div class="card-header">
-              <button class="card-button-star" type="button" name="star-button"><img id="star" src="assets/star.svg"/></button>
+              <button class="card-button-star" type="button" name="star-button"><img id="star" src="${starStatus}"/></button>
               <button class="card-button-delete" type="button" name="delete-button"><img id="delete" src="assets/delete.svg"/></button>
             </div>
             <div class="card-body">
@@ -48,39 +65,57 @@ function createCard(idea) {
               <label class="button-label-edit" for="">Comment</label>
             </div>
           </article>`
-}
+};
 
 function loadCards() {
   for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     var object = localStorage.getItem(key);
-    var parsedObject = JSON.parse(object);
-    allCards[i] = parsedObject;
-
-    var cardHTML = createCard(parsedObject);
-  }
+    var card = JSON.parse(object);
+    var instanciatedIdea = new Idea(card);
+    allCards[i] = instanciatedIdea;
+  };
+  orderLoadedCards();
 };
 
-cardSection.addEventListener('click', function() {
-    //delete handing helper function
-  if (event.target.id === 'delete') {
-    event.target.parentNode.parentNode.parentNode.remove();
-    cardRemove(event);
-    //star change helper function
-  } else if (event.target.id === 'star') {
-    console.log(event);
-    var src = event.target.src;
-    toggleStar(event);
-    if (src.includes('active')) {
-      event.target.src = "assets/star.svg";
-    } else {
-      event.target.src = "assets/star-active.svg";
-    }
+function starLoad(idea) {
+  if (idea.starred) {
+    return "assets/star-active.svg";
+  } else {
+    return "assets/star.svg";
   }
-});
+}
 
-titleInput.addEventListener('keyup', enableButton);
-bodyInput.addEventListener('keyup', enableButton);
+function orderLoadedCards() {
+  allCards.sort(function(a, b) {
+    return a.id - b.id;
+  });
+  for (var i = 0; i < allCards.length; i++) {
+    createCard(allCards[i]);
+  };
+};
+
+function cardEvent(passedEvent) {
+  switch (passedEvent.id) {
+    case 'delete':
+      passedEvent.parentNode.parentNode.parentNode.remove();
+      cardRemove(passedEvent);
+      break;
+    case 'star':
+      toggleStar(passedEvent);
+      starImgChg(passedEvent);
+      break;
+  };
+};
+
+function starImgChg(passedEvent) {
+  var src = passedEvent.src;
+  if (src.includes('active')) {
+    passedEvent.src = "assets/star.svg";
+  } else {
+    passedEvent.src = "assets/star-active.svg";
+  }
+};
 
 function cardStorageRefresh() {
   localStorage.clear();
@@ -89,12 +124,11 @@ function cardStorageRefresh() {
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(userCard.id, jsonObject);
   }
-}
+};
 
 function enableButton() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
-
   if (titleValue !== "" && bodyValue !== "") {
     submit.disabled = false;
     } if (titleValue === "" || bodyValue === "") {
@@ -102,41 +136,30 @@ function enableButton() {
   }
 };
 
-function toggleStar(event) {
-  var id = event.target.parentNode.parentNode.parentNode.id;
-
+function toggleStar(passedEvent) {
+  var id = passedEvent.parentNode.parentNode.parentNode.dataset.id;
   for (var i = 0; i < allCards.length; i++) {
     if(allCards[i].id.toString() === id) {
       allCards[i].starred = !allCards[i].starred;
-    }
-  }
+    };
+  };
   cardStorageRefresh();
-}
+};
 
-buttonOpen.addEventListener('click', menuDropdown);
 function menuDropdown() {
   var hide = document.querySelector('.hidden-section');
   navSection.classList.toggle('show');
   buttonOpen.classList.toggle('nav-button-close');
   hide.classList.toggle('hide');
+};
 
-}
-
-function cardRemove(event) {
+function cardRemove(passedEvent) {
   allCards = allCards.filter(allCards => {
-    var deleteId = event.target.parentNode.parentNode.parentNode.id;
+    var deleteId = passedEvent.parentNode.parentNode.parentNode.dataset.id;
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-}
-
-function idNoMatchFilter(event) {
-  var deleteId = event.target.parentNode.parentNode.parentNode.id;
-  localStorage.removeItem(deleteId);
-  return allCards.id.toString() !== deleteId;
-}
-
-searchInput.addEventListener('keyup', search);
+});
 
 function search() {
   var searchValue = searchInput.value.toLowerCase();
@@ -146,19 +169,4 @@ function search() {
       createCard(allCards[i]);
     }
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// aaaaa
+};
