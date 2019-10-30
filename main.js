@@ -7,6 +7,8 @@ var form = document.querySelector('.form');
 var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
+var searchBtn = document.querySelector('.form-button-search');
+var searchInput = document.querySelector('.form-input-search');
 var allCards = [];
 
 submit.addEventListener('click', submitNewIdea);
@@ -17,6 +19,7 @@ cardSection.addEventListener('click', function() {
   cardEvent(event.target);
 });
 buttonOpen.addEventListener('click', menuDropdown);
+searchInput.addEventListener('keyup', search);
 
 function submitNewIdea() {
   var card = createCardObject();
@@ -156,4 +159,14 @@ function cardRemove(passedEvent) {
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
+});
+
+function search() {
+  var searchValue = searchInput.value.toLowerCase();
+  cardSection.innerHTML = "";
+  for (var i = 0; i < allCards.length; i++) {
+    if (allCards[i].title.toLowerCase().includes(searchValue) || allCards[i].body.toLowerCase().includes(searchValue)) {
+      createCard(allCards[i]);
+    }
+  }
 };
