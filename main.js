@@ -7,6 +7,8 @@ var form = document.querySelector('.form');
 var buttonOpen = document.querySelector('.nav-button-open');
 var navSection = document.querySelector('.nav-section');
 var image = document.getElementById('menu');
+var searchBtn = document.querySelector('.form-button-search');
+var searchInput = document.querySelector('.form-input-search');
 var allCards = [];
 var showStarBtn = document.querySelector('.nav-button-starbutton');
 
@@ -18,7 +20,10 @@ cardSection.addEventListener('click', function() {
   cardEvent(event.target);
 });
 buttonOpen.addEventListener('click', menuDropdown);
+
 showStarBtn.addEventListener('click', showStarred);
+
+searchInput.addEventListener('keyup', search);
 
 function showStarred() {
   cardSection.innerHTML = '';
@@ -175,4 +180,14 @@ function cardRemove(passedEvent) {
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
+});
+
+function search() {
+  var searchValue = searchInput.value.toLowerCase();
+  cardSection.innerHTML = "";
+  for (var i = 0; i < allCards.length; i++) {
+    if (allCards[i].title.toLowerCase().includes(searchValue) || allCards[i].body.toLowerCase().includes(searchValue)) {
+      createCard(allCards[i]);
+    }
+  }
 };
