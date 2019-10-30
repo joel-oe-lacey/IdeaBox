@@ -180,7 +180,7 @@ function cardRemove(passedEvent) {
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-});
+};
 
 function search() {
   var searchValue = searchInput.value.toLowerCase();
