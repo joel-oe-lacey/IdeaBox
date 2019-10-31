@@ -17,7 +17,7 @@ titleInput.addEventListener('keyup', enableButton);
 bodyInput.addEventListener('keyup', enableButton);
 window.onload = loadCards;
 cardSection.addEventListener('click', function() {
-  cardEvent(event.target);
+  handleCardEvent(event.target);
 });
 buttonOpen.addEventListener('click', menuDropdown);
 
@@ -52,15 +52,15 @@ function createCardObject() {
   var titleValue = titleInput.value;
   var bodyValue = bodyInput.value;
   var cardObj = {
-    id:Date.now(),
-    title:titleValue,
-    body:bodyValue,
-    starred:false,
+    id: Date.now(),
+    title: titleValue,
+    body: bodyValue,
+    starred: false,
   };
-  var userCard = new Idea(cardObj);
-  allCards.push(userCard);
-  userCard.saveToStorage(userCard);
-  return userCard;
+  var userIdea = new Idea(cardObj);
+  allCards.push(userIdea);
+  userIdea.saveToStorage(userIdea);
+  return userIdea;
 };
 
 function formReset() {
@@ -93,8 +93,8 @@ function loadCards() {
     var key = localStorage.key(i);
     var object = localStorage.getItem(key);
     var card = JSON.parse(object);
-    var instanciatedIdea = new Idea(card);
-    allCards[i] = instanciatedIdea;
+    var instantiatedIdea = new Idea(card);
+    allCards[i] = instantiatedIdea;
   };
   orderLoadedCards();
 };
@@ -116,7 +116,7 @@ function orderLoadedCards() {
   };
 };
 
-function cardEvent(passedEvent) {
+function handleCardEvent(passedEvent) {
   switch (passedEvent.id) {
     case 'delete':
       passedEvent.parentNode.parentNode.parentNode.remove();
@@ -175,12 +175,12 @@ function menuDropdown() {
 };
 
 function cardRemove(passedEvent) {
-  allCards = allCards.filter(allCards => {
+  allCards = allCards.filter(card => {
     var deleteId = passedEvent.parentNode.parentNode.parentNode.dataset.id;
     localStorage.removeItem(deleteId);
     return allCards.id.toString() !== deleteId;
   });
-});
+};
 
 function search() {
   var searchValue = searchInput.value.toLowerCase();

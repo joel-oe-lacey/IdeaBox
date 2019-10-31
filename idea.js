@@ -12,12 +12,4 @@ class Idea {
     var jsonObject = JSON.stringify(userCard);
     localStorage.setItem(this.id, jsonObject);
   };
-
-  deleteFromStorage(passedEvent) {
-
-  };
-
-  updateIdea(passedEvent) {
-
-  };
 }
